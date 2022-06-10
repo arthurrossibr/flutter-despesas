@@ -1,16 +1,10 @@
-# projeto_despesas
+# Projeto Perguntas  
 
-Aplicativo de despesas pessoais
+Projeto de aplicativo do curso de Flutter da Cod3er na Udemy.  
 
-## Getting Started
+## Sobre o projeto  
 
-This project is a starting point for a Flutter application.
+O projeto consiste em um aplicativo que irá apresentar e permitir lançar as despesas pessoais da semana do usuário.
+## Motivação  
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+A motivação do projeto é estudar o framework e aplicar os conhecimentos adquiridos.
