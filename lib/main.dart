@@ -37,7 +37,7 @@ class MyHomePage extends StatelessWidget {
           Container(
             width: double.infinity,
             child: const Card(
-              color: Colors.blue,
+              color: Colors.purple,
               elevation: 5,
               child: Text('Graph'),
             ),
@@ -61,7 +61,7 @@ class MyHomePage extends StatelessWidget {
                         ),
                         padding: const EdgeInsets.all(10),
                         child: Text(
-                          tr.value.toString(),
+                          'R\$${tr.value.toStringAsFixed(2)}',
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
