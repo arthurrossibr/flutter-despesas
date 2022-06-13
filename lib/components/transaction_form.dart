@@ -50,11 +50,8 @@ class _TransactionFormState extends State<TransactionForm> {
             ),
             TextButton(
                 style: TextButton.styleFrom(
-                  textStyle: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  primary: Colors.purple,
+                  textStyle: Theme.of(context).textTheme.headline6,
+                  primary: Theme.of(context).colorScheme.primary,
                 ),
                 onPressed: () {
                   _submitForm();
