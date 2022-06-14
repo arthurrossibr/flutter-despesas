@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../models/transaction.dart';
+import 'chart_bar.dart';
 
 class Chart extends StatelessWidget {
   const Chart(this.recentTransactions, {Key? key}) : super(key: key);
@@ -37,7 +38,7 @@ class Chart extends StatelessWidget {
       child: Row(
         children: groupedTransactionValues.map(
           (tr) {
-            return Text('${tr['day']}: ${tr['value']}');
+            return ChartBar(tr['day'] as String, tr['value'] as double, 0);
           },
         ).toList(),
       ),
