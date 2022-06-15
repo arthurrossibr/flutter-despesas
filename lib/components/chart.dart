@@ -4,53 +4,64 @@ import '../models/transaction.dart';
 import 'chart_bar.dart';
 
 class Chart extends StatelessWidget {
-  const Chart(this.recentTransactions, {Key? key}) : super(key: key);
+  const Chart(this.recentTransaction, {Key? key}) : super(key: key);
 
-  final List<Transaction> recentTransactions;
+  final List<Transaction> recentTransaction;
 
-  List<Map<String, Object>> get groupedTransactionValues {
-    return List.generate(
-      7,
-      (index) {
-        final weekDay = DateTime.now().subtract(Duration(days: index));
-        double totalSum = 0.0;
-        for (var i = 0; i < recentTransactions.length; i++) {
-          if (recentTransactions[i].date.day == weekDay.day &&
-              recentTransactions[i].date.month == weekDay.month &&
-              recentTransactions[i].date.year == weekDay.year) {
-            totalSum += recentTransactions[i].value;
-          }
+  List<Map<String, Object>> get groupedTransactions {
+    return List.generate(7, (index) {
+      final weekDay = DateTime.now().subtract(
+        Duration(days: index),
+      );
+
+      double totalSum = 0.0;
+
+      for (var i = 0; i < recentTransaction.length; i++) {
+        bool sameDay = recentTransaction[i].date.day == weekDay.day;
+        bool sameMonth = recentTransaction[i].date.month == weekDay.month;
+        bool sameYear = recentTransaction[i].date.year == weekDay.year;
+
+        if (sameDay && sameMonth && sameYear) {
+          totalSum += recentTransaction[i].value;
         }
-        return {
-          'day': DateFormat.E().format(weekDay)[0],
-          'value': totalSum,
-        };
-      },
-    );
+      }
+
+      return {
+        'day': DateFormat.E().format(weekDay)[0],
+        'value': totalSum,
+      };
+    });
   }
 
   double get _weekTotalValue {
-    return groupedTransactionValues.fold(0.0, (sum, tr) {
-      return sum + (tr['value'] as double);
+    return groupedTransactions.fold(0.0, (sum, tr) {
+      double result = sum + (tr['value'] as double);
+      return result;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    groupedTransactionValues;
     return Card(
       elevation: 6,
       margin: const EdgeInsets.all(20),
-      child: Row(
-        children: groupedTransactionValues.map(
-          (tr) {
-            return ChartBar(
-              tr['day'] as String,
-              tr['value'] as double,
-              (tr['value'] as double) / _weekTotalValue,
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: groupedTransactions.map((tr) {
+            return Flexible(
+              fit: FlexFit.tight,
+              child: ChartBar(
+                label: tr['day'] as String,
+                value: tr['value'] as double,
+                percentage: _weekTotalValue == 0
+                    ? 0
+                    : (tr['value'] as double) / _weekTotalValue,
+              ),
             );
-          },
-        ).toList(),
+          }).toList(),
+        ),
       ),
     );
   }
