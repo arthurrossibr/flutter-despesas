@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'components/chart.dart';
 import 'components/transaction_form.dart';
 import 'models/transaction.dart';
@@ -15,6 +16,14 @@ class ExpensesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('pt','BR'),
+      ],
       home: const MyHomePage(),
       theme: tema.copyWith(
         colorScheme: tema.colorScheme.copyWith(
