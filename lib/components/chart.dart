@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../models/transaction.dart';
 import 'chart_bar.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 class Chart extends StatelessWidget {
   const Chart(this.recentTransaction, {Key? key}) : super(key: key);
@@ -25,7 +26,7 @@ class Chart extends StatelessWidget {
       }
 
       return {
-        'day': DateFormat.E().format(weekDay)[0],
+        'day': DateFormat.E('pt_BR').format(weekDay),
         'value': totalSum,
       };
     }).reversed.toList();
@@ -40,6 +41,8 @@ class Chart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    initializeDateFormatting('pt_BR');
+
     return Card(
       elevation: 6,
       margin: const EdgeInsets.all(20),

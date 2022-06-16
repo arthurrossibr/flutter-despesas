@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../models/transaction.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 class TransactionList extends StatelessWidget {
   const TransactionList(this.transactions, {Key? key}) : super(key: key);
@@ -9,6 +10,7 @@ class TransactionList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    initializeDateFormatting('pt_BR');
     return SizedBox(
       height: 500,
       child: transactions.isEmpty
@@ -61,7 +63,7 @@ class TransactionList extends StatelessWidget {
                       style: Theme.of(context).textTheme.headline6,
                     ),
                     subtitle: Text(
-                      DateFormat('dd/MM/yyyy').format(tr.date),
+                      DateFormat('dd MMMM yyyy', 'pt_BR').format(tr.date),
                     ),
                   ),
                 );
