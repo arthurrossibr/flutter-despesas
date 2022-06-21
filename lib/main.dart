@@ -106,7 +106,10 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     final appBar = AppBar(
-      title: const Text('Despesas Pessoais'),
+      title: Text('Despesas Pessoais',
+      style: TextStyle(
+        fontSize: MediaQuery.of(context).textScaleFactor * 20,
+      ),),
       actions: <Widget>[
         IconButton(
           icon: const Icon(Icons.add),
