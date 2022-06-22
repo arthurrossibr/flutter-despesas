@@ -119,12 +119,15 @@ class _MyHomePageState extends State<MyHomePage> {
     final mediaQuery = MediaQuery.of(context);
     bool isLandscape = mediaQuery.orientation == Orientation.landscape;
 
+    final iconList = Platform.isIOS ? CupertinoIcons.list_bullet : Icons.list;
+    final iconChart = Platform.isIOS ? CupertinoIcons.chart_bar_alt_fill : Icons.show_chart;
+
     final actions = <Widget>[
       if (isLandscape)
         _getIconButton(
           _showChart
-              ? (Platform.isIOS ? CupertinoIcons.list_bullet : Icons.list)
-              : (Platform.isIOS ? CupertinoIcons.chart_bar : Icons.show_chart),
+              ? iconList
+              : iconChart,
           () {
             setState(
               () {
@@ -153,21 +156,23 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar.preferredSize.height -
         MediaQuery.of(context).padding.top;
 
-    final bodyPage = SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          if (_showChart || !isLandscape)
-            SizedBox(
-              height: availableHeight * (isLandscape ? 0.85 : 0.25),
-              child: Chart(_recentTransactions),
-            ),
-          if (!_showChart || !isLandscape)
-            SizedBox(
-              height: availableHeight * (isLandscape ? 1 : 0.75),
-              child: TransactionList(_transactions, _removeTransaction),
-            ),
-        ],
+    final bodyPage = SafeArea(
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            if (_showChart || !isLandscape)
+              SizedBox(
+                height: availableHeight * (isLandscape ? 0.85 : 0.25),
+                child: Chart(_recentTransactions),
+              ),
+            if (!_showChart || !isLandscape)
+              SizedBox(
+                height: availableHeight * (isLandscape ? 1 : 0.75),
+                child: TransactionList(_transactions, _removeTransaction),
+              ),
+          ],
+        ),
       ),
     );
 
