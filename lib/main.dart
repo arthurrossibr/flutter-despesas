@@ -47,6 +47,10 @@ class ExpensesApp extends StatelessWidget {
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
+          button: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );

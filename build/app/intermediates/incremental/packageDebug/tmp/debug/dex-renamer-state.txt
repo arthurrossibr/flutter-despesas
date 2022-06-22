@@ -1,4 +1,4 @@
-#Sat Jun 18 17:14:11 BRT 2022
+#Tue Jun 21 22:04:15 BRT 2022
 base.0=/Users/arthurrossicardoso/dev/flutter-projects/projeto_despesas/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
 renamed.0=classes.dex
 path.0=classes.dex
