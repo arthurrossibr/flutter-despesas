@@ -51,77 +51,87 @@ class _TransactionFormState extends State<TransactionForm> {
   @override
   Widget build(BuildContext context) {
     initializeDateFormatting('pt_BR');
-    return Card(
-      elevation: 5,
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          children: <Widget>[
-            TextField(
-              controller: _titleController,
-              onSubmitted: (_) => _submitForm(),
-              decoration: const InputDecoration(
-                labelText: 'Título',
-              ),
+    return SingleChildScrollView(
+      child: Card(
+        elevation: 5,
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Padding(
+            padding: EdgeInsets.only(
+              top: 10,
+              right: 10,
+              left: 10,
+              bottom: 10 + MediaQuery.of(context).viewInsets.bottom,
             ),
-            TextField(
-              controller: _valueController,
-              keyboardType:
-                  const TextInputType.numberWithOptions(decimal: true),
-              onSubmitted: (_) => _submitForm(),
-              decoration: const InputDecoration(
-                labelText: 'Valor (R\$',
-              ),
-            ),
-            SizedBox(
-              height: 70,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Text(_selectedDate == null
-                        ? 'Nenhuma data selecionada!'
-                        : DateFormat('dd MMMM yyyy', 'pt_BR')
-                            .format(_selectedDate!)),
-                  ),
-                  TextButton(
-                    style: TextButton.styleFrom(
-                      textStyle: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                      primary: Theme.of(context).colorScheme.primary,
-                    ),
-                    onPressed: _showDatePicker,
-                    child: const Text('Selecionar data!'),
-                  ),
-                ],
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+            child: Column(
               children: <Widget>[
-                Container(
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.primary,
-                    borderRadius: BorderRadius.circular(5),
+                TextField(
+                  controller: _titleController,
+                  onSubmitted: (_) => _submitForm(),
+                  decoration: const InputDecoration(
+                    labelText: 'Título',
                   ),
-                  child: TextButton(
-                    style: TextButton.styleFrom(
-                      textStyle: Theme.of(context).textTheme.headline6,
-                    ),
-                    onPressed: () {
-                      _submitForm();
-                    },
-                    child: const Text(
-                      'Nova Transação',
-                      style: TextStyle(
-                        color: Colors.white,
+                ),
+                TextField(
+                  controller: _valueController,
+                  keyboardType:
+                      const TextInputType.numberWithOptions(decimal: true),
+                  onSubmitted: (_) => _submitForm(),
+                  decoration: const InputDecoration(
+                    labelText: 'Valor (R\$',
+                  ),
+                ),
+                SizedBox(
+                  height: 70,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text(_selectedDate == null
+                            ? 'Nenhuma data selecionada!'
+                            : DateFormat('dd MMMM yyyy', 'pt_BR')
+                                .format(_selectedDate!)),
+                      ),
+                      TextButton(
+                        style: TextButton.styleFrom(
+                          textStyle: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                          primary: Theme.of(context).colorScheme.primary,
+                        ),
+                        onPressed: _showDatePicker,
+                        child: const Text('Selecionar data!'),
+                      ),
+                    ],
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.primary,
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: TextButton(
+                        style: TextButton.styleFrom(
+                          textStyle: Theme.of(context).textTheme.headline6,
+                        ),
+                        onPressed: () {
+                          _submitForm();
+                        },
+                        child: const Text(
+                          'Nova Transação',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
               ],
             ),
-          ],
+          ),
         ),
       ),
     );
