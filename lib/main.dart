@@ -43,7 +43,7 @@ class ExpensesApp extends StatelessWidget {
           ),
           headline5: const TextStyle(
             fontFamily: 'OpenSans',
-            fontSize: 16,
+            fontSize: 18,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
@@ -123,15 +123,14 @@ class _MyHomePageState extends State<MyHomePage> {
     final mediaQuery = MediaQuery.of(context);
     bool isLandscape = mediaQuery.orientation == Orientation.landscape;
 
-    final iconList = Platform.isIOS ? CupertinoIcons.list_bullet : Icons.list;
-    final iconChart = Platform.isIOS ? CupertinoIcons.chart_bar_alt_fill : Icons.show_chart;
+    final iconList = Platform.isIOS ? (CupertinoIcons.list_bullet) : Icons.list;
+    final iconChart =
+        Platform.isIOS ? CupertinoIcons.chart_bar_alt_fill : Icons.show_chart;
 
     final actions = <Widget>[
       if (isLandscape)
         _getIconButton(
-          _showChart
-              ? iconList
-              : iconChart,
+          _showChart ? iconList : iconChart,
           () {
             setState(
               () {
@@ -183,7 +182,9 @@ class _MyHomePageState extends State<MyHomePage> {
     return Platform.isIOS
         ? CupertinoPageScaffold(
             navigationBar: CupertinoNavigationBar(
-              middle: const Text('Despesas Pessoais'),
+              backgroundColor: Theme.of(context).colorScheme.primary,
+              middle: Text('Despesas Pessoais',
+                  style: Theme.of(context).textTheme.headline5),
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: actions,

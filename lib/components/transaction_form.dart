@@ -3,6 +3,8 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:projeto_despesas/components/adaptative_button.dart';
 
+import 'adaptative_textfield.dart';
+
 class TransactionForm extends StatefulWidget {
   const TransactionForm(this.onSubmit, {Key? key}) : super(key: key);
 
@@ -66,21 +68,17 @@ class _TransactionFormState extends State<TransactionForm> {
             ),
             child: Column(
               children: <Widget>[
-                TextField(
+                AdaptativeTextField(
+                  label: 'Título',
                   controller: _titleController,
                   onSubmitted: (_) => _submitForm(),
-                  decoration: const InputDecoration(
-                    labelText: 'Título',
-                  ),
                 ),
-                TextField(
+                AdaptativeTextField(
+                  label: 'Valor (R\$',
                   controller: _valueController,
                   keyboardType:
                       const TextInputType.numberWithOptions(decimal: true),
                   onSubmitted: (_) => _submitForm(),
-                  decoration: const InputDecoration(
-                    labelText: 'Valor (R\$',
-                  ),
                 ),
                 SizedBox(
                   height: 70,
@@ -108,8 +106,8 @@ class _TransactionFormState extends State<TransactionForm> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    AdaptativeButton(label: 'Nova Transação', onPressed: _submitForm),
-
+                    AdaptativeButton(
+                        label: 'Nova Transação', onPressed: _submitForm),
                   ],
                 ),
               ],
